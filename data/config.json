@@ -1,0 +1,51 @@
+{
+	"pins": {
+		"4": {
+			"mode": "out",
+			"value": 0
+		},
+		"5": {
+			"mode": "out",
+			"value": 0
+		},
+		"14": {
+			"mode": "in",
+			"value": false
+		}
+	},
+	"network": {
+		"ap": {
+			"ssid": "ESP12F-a42c16",
+			"password": "12344321",
+			"ip": "10.0.1.1",
+			"mask": "255.255.255.0",
+			"subnet": "10.0.1.1",
+			"dns": "8.8.8.8"
+		},
+		"sta": [
+			{
+				"ssid": "HW-PHONE",
+				"password": "12344321"
+			},
+			{
+				"ssid": "HW-PC",
+				"password": "12344321"
+			}
+		]
+	},
+	"display": {
+		"tm1637": {
+			"DIO": 4,
+			"CLK": 5
+		}
+	},
+	"mqtt": {
+		"host": "192.168.43.230",
+		"port": 1883,
+		"ClientId": "esp12f-a42c16",
+		"PublishTopic": "esp/a42c16/send",
+		"SubscribeTopic": "esp/a42c16/receive",
+		"authKey": "esp12f07860"
+	}
+}
+
