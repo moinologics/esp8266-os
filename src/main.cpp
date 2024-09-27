@@ -1,3 +1,11 @@
-void setup() {}
+#include "core/core.h"
 
-void loop() {}
+void setup_main() {
+  setup_core();
+
+  // everything else goes here
+}
+
+void loop_main() {
+  loop_core();
+}

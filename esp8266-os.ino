@@ -1,1 +1,9 @@
-#include "src/main.cpp"
+#include "src/main.h"
+
+void setup() {
+  setup_main();
+}
+
+void loop() {
+  loop_main();
+}
