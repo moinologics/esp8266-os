@@ -5,6 +5,8 @@
 const char* ssid = "LANister";
 const char* password = "d4ef482a";
 
+size_t ota_progress = 0;
+
 void setup_ap() {
   String ssid = WiFi.macAddress();
   bool success = WiFi.softAP(ssid);
@@ -43,9 +45,14 @@ void setup_ota(AsyncWebServer* server) {
 
   ElegantOTA.onStart([]() {
     Serial.println("OTA update process started.");
+    ota_progress = 0;
   });
-  ElegantOTA.onProgress([](size_t current, size_t final) {
-    Serial.printf("Progress: %u%%\r\n", (current * 100) / final);
+  ElegantOTA.onProgress([](size_t current, size_t total) {
+    size_t progress = (current * 100) / total;
+    if (progress > ota_progress) {
+      Serial.printf("Progress: %u%%\r\n", progress);
+      ota_progress = progress;
+    }
   });
   ElegantOTA.onEnd([](bool success) {
     if (success) {
