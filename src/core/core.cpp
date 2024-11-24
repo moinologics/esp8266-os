@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
 #include <ESPAsyncWebServer.h>
 #include <ElegantOTA.h>
 
@@ -16,7 +17,8 @@ void setup_core() {
 
   setup_ap();    // this will setup simple AP to reach to this device
   setup_wifi();
-  setup_nat();  // this will re-setup AP with internet access 
+  setup_mdns();
+  // setup_nat();  // this will re-setup AP with internet access 
   setup_webserial(&server);
   setup_ota(&server);
 
@@ -26,4 +28,5 @@ void setup_core() {
 
 void loop_core() {
   ElegantOTA.loop();
+  MDNS.update();
 }

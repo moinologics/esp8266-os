@@ -1,10 +1,12 @@
 #include <HardwareSerial.h>
 
-#if LWIP_FEATURES && !LWIP_IPV6
+// #if LWIP_FEATURES && !LWIP_IPV6
 
 #include <ESP8266WiFi.h>
 #include <lwip/napt.h>
 #include <lwip/dns.h>
+
+#include "../utils/utils.h"
 
 #define NAPT 1000
 #define NAPT_PORT 10
@@ -21,7 +23,7 @@ void setup_nat() {
 
   Serial.printf("STA: %s (dns: %s / %s)\r\n", WiFi.localIP().toString().c_str(), WiFi.dnsIP(0).toString().c_str(), WiFi.dnsIP(1).toString().c_str());
 
-  String AP_SSID = WiFi.macAddress();
+  String AP_SSID = getHostName();
   IPAddress AP_IP = IPAddress(10, 3, 0, 1);
   IPAddress AP_SUBNET = IPAddress(255, 255, 255, 0);
 
@@ -49,10 +51,10 @@ void setup_nat() {
   Serial.printf("---NAPT Range extender setup end---\r\n");
 }
 
-#else
+// #else
 
-void setup_nat() {
-  Serial.printf("NAPT not supported in this configuration\r\n");
-}
+// void setup_nat() {
+//   Serial.printf("NAPT not supported in this configuration\r\n");
+// }
 
-#endif
+// #endif

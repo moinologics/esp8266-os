@@ -1,18 +1,25 @@
-#include<Arduino.h>
+#include <Arduino.h>
+#include <AsyncTask.h>
+
 #include "core/core.h"
 #include "logger/logger.h"
+#include "sr04/sr04.h"
+#include "utils/utils.h"
+
+AsyncTask asyncTask;
 
 void setup_main() {
   setup_core();
+  setup_sr04();
 
-  // everything else goes here
+  // async tasks
+  asyncTask.repeat(loop_sr04, 3000);
 
-
-  // setup end
   logln("setup end");
 }
 
 void loop_main() {
   loop_core();
-  delay(100);
+  asyncTask.loop();
+  // delay(1000);
 }
